@@ -1,0 +1,58 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: Roo Code LLM Docs
+  chapters:
+    - index.md
+    - part: Introduction
+      chapters:     
+      - llm_docs/overview.md
+
+    - part: Core Architecture
+      chapters:     
+      - llm_docs/extension.md
+      - llm_docs/core.md
+      - llm_docs/modes.md
+
+    - part: Language Model Integration
+      chapters:     
+      - llm_docs/llms.md
+      - llm_docs/api.md
+
+    - part: External Integrations
+      chapters:     
+      - llm_docs/mcp.md
+      - llm_docs/services.md
+
+    - part: Webview UI
+      chapters: 
+      - llm_docs/webview-ui.md
+      - llm_docs/webview-ui-structure.md
+
+    - part: How-To Guides
+      chapters:     
+      - llm_docs/howto.md
+      - llm_docs/settings.md
+
+    - part: Utilities
+      chapters:     
+      - llm_docs/cost.md
+      - llm_docs/fs.md
+      - llm_docs/git.md
+      - llm_docs/messages.md
+
+    - part: Other
+      chapters:     
+      - llm_docs/intellij-plugin.md
+      - llm_docs/integrations.md
+
+format:
+  html:
+    theme: cosmo
+    code-copy: true
+    number-sections: false
+
+language: 
+  search-text-placeholder: Search
