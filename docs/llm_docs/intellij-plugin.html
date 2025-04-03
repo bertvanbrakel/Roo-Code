@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; How to Create an IntelliJ Plugin from the Roo Code Codebase – Roo Code LLM Docs</title>
+<title>How to Create an IntelliJ Plugin from the Roo Code Codebase – Roo Code LLM Docs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../llm_docs/llms.html" rel="next">
-<link href="../llm_docs/integrations.html" rel="prev">
+<link href="../llm_docs/integrations.html" rel="next">
+<link href="../llm_docs/messages.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1bb58123569419082c201f8cb3f5049c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fef47fc9a930a3d1d88f47a9f4a83c65.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,7 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
+    "search-text-placeholder": "Search",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../llm_docs/intellij-plugin.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">How to Create an IntelliJ Plugin from the Roo Code Codebase</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../llm_docs/intellij-plugin.html">Other</a></li><li class="breadcrumb-item"><a href="../llm_docs/intellij-plugin.html"><span class="chapter-title">How to Create an IntelliJ Plugin from the Roo Code Codebase</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -142,148 +142,197 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome to the Roo Code Docs</span></span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Welcome to the Roo Code Docs</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/api.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">API Architecture</span></span></a>
+  <a href="../llm_docs/overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Project Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Core Architecture</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/core.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Core Architecture</span></span></a>
+  <a href="../llm_docs/extension.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Extension Activation</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/cost.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cost Calculation</span></span></a>
+  <a href="../llm_docs/core.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Core Architecture</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/cross-platform-app.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">How to Make Roo Code Run as a Standalone Cross-Platform App</span></span></a>
+  <a href="../llm_docs/modes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Modes</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Language Model Integration</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/extension.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Extension Activation</span></span></a>
+  <a href="../llm_docs/llms.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Language Models (LLMs)</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/fs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">File System Utilities</span></span></a>
+  <a href="../llm_docs/api.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">API Architecture</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Git Utilities</span></span></a>
+  <a href="../llm_docs/tool-selection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tool Selection</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/howto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">How-To Guide</span></span></a>
+  <a href="../llm_docs/chat-flow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chat Interaction Flow</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">External Integrations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/integrations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Integrations Architecture</span></span></a>
+  <a href="../llm_docs/mcp.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">MCP Integration</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/intellij-plugin.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">How to Create an IntelliJ Plugin from the Roo Code Codebase</span></span></a>
+  <a href="../llm_docs/services.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Services Architecture</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Webview UI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/llms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Language Models (LLMs)</span></span></a>
+  <a href="../llm_docs/webview-ui.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Webview UI Architecture</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/mcp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">MCP Integration</span></span></a>
+  <a href="../llm_docs/webview-ui-structure.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Webview UI Structure</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">How-To Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/messages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Extension Messages</span></span></a>
+  <a href="../llm_docs/howto.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">How-To Guide</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/modes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Modes</span></span></a>
+  <a href="../llm_docs/settings.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Settings</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Utilities</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Project Overview</span></span></a>
+  <a href="../llm_docs/cost.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Cost Calculation</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/plan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Codebase Analysis Plan</span></span></a>
+  <a href="../llm_docs/fs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File System Utilities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/services.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Services Architecture</span></span></a>
+  <a href="../llm_docs/git.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Git Utilities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/shell.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Shell Utilities</span></span></a>
+  <a href="../llm_docs/messages.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Extension Messages</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Other</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/sound.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Sound Utilities</span></span></a>
+  <a href="../llm_docs/intellij-plugin.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">How to Create an IntelliJ Plugin from the Roo Code Codebase</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/telemetry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Telemetry Settings</span></span></a>
+  <a href="../llm_docs/integrations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Integrations Architecture</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../llm_docs/vscode-extensions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">How VS Code Extensions Work</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../llm_docs/webview-ui.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Webview UI Architecture</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../llm_docs/webview-ui-structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Webview UI Structure</span></span></a>
-  </div>
-</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -294,22 +343,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites"><span class="header-section-number">11.1</span> Prerequisites</a></li>
-  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="header-section-number">11.2</span> Steps</a></li>
-  <li><a href="#reusing-code" id="toc-reusing-code" class="nav-link" data-scroll-target="#reusing-code"><span class="header-section-number">11.3</span> Reusing Code</a></li>
-  <li><a href="#adapting-vs-code-api-calls" id="toc-adapting-vs-code-api-calls" class="nav-link" data-scroll-target="#adapting-vs-code-api-calls"><span class="header-section-number">11.4</span> Adapting VS Code API Calls</a></li>
-  <li><a href="#implementing-the-ui" id="toc-implementing-the-ui" class="nav-link" data-scroll-target="#implementing-the-ui"><span class="header-section-number">11.5</span> Implementing the UI</a></li>
-  <li><a href="#plugin.xml" id="toc-plugin.xml" class="nav-link" data-scroll-target="#plugin.xml"><span class="header-section-number">11.6</span> plugin.xml</a></li>
-  <li><a href="#running-roo-code-in-a-containersandbox" id="toc-running-roo-code-in-a-containersandbox" class="nav-link" data-scroll-target="#running-roo-code-in-a-containersandbox"><span class="header-section-number">11.7</span> Running Roo Code in a Container/Sandbox</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a></li>
+  <li><a href="#reusing-code" id="toc-reusing-code" class="nav-link" data-scroll-target="#reusing-code">Reusing Code</a></li>
+  <li><a href="#adapting-vs-code-api-calls" id="toc-adapting-vs-code-api-calls" class="nav-link" data-scroll-target="#adapting-vs-code-api-calls">Adapting VS Code API Calls</a></li>
+  <li><a href="#implementing-the-ui" id="toc-implementing-the-ui" class="nav-link" data-scroll-target="#implementing-the-ui">Implementing the UI</a></li>
+  <li><a href="#plugin.xml" id="toc-plugin.xml" class="nav-link" data-scroll-target="#plugin.xml">plugin.xml</a></li>
+  <li><a href="#running-roo-code-in-a-containersandbox" id="toc-running-roo-code-in-a-containersandbox" class="nav-link" data-scroll-target="#running-roo-code-in-a-containersandbox">Running Roo Code in a Container/Sandbox</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../llm_docs/intellij-plugin.html">Other</a></li><li class="breadcrumb-item"><a href="../llm_docs/intellij-plugin.html"><span class="chapter-title">How to Create an IntelliJ Plugin from the Roo Code Codebase</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">How to Create an IntelliJ Plugin from the Roo Code Codebase</span></h1>
+<h1 class="title"><span class="chapter-title">How to Create an IntelliJ Plugin from the Roo Code Codebase</span></h1>
 </div>
 
 
@@ -327,15 +376,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>This document provides detailed instructions on how to create an IntelliJ plugin from the Roo Code codebase. This allows developers familiar with the IntelliJ IDEA IDE to leverage the Roo Code functionality within their preferred environment.</p>
-<section id="prerequisites" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">11.1</span> Prerequisites</h2>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
 <ul>
 <li>IntelliJ IDEA IDE: You will need a working installation of IntelliJ IDEA to develop and test the plugin.</li>
 <li>Basic knowledge of IntelliJ plugin development: Familiarity with the IntelliJ Platform SDK and plugin development concepts is essential.</li>
 </ul>
 </section>
-<section id="steps" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="steps"><span class="header-section-number">11.2</span> Steps</h2>
+<section id="steps" class="level2">
+<h2 class="anchored" data-anchor-id="steps">Steps</h2>
 <ol type="1">
 <li><strong>Create a new IntelliJ plugin project.</strong> Use the IntelliJ IDEA IDE to create a new plugin project. Select “New Project” from the File menu, then select “IntelliJ Platform Plugin” from the project types. This will create a basic plugin project with the necessary files and directories.</li>
 <li><strong>Identify reusable code.</strong> The core logic of the Roo Code extension, such as the code for interacting with the LLMs, the MCP integration, and the core utilities, can be reused in the IntelliJ plugin. This code is located in the <code>src</code> directory. Carefully analyze the Roo Code codebase to identify the components that can be adapted for use in the IntelliJ plugin.</li>
@@ -345,8 +394,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Build and test the plugin.</strong> Use the IntelliJ IDEA IDE to build and test the plugin. Select “Build” from the Build menu, then select “Build Project”. To test the plugin, select “Run” from the Run menu, then select “Run”. You can also use the “Debug” menu to debug the plugin.</li>
 </ol>
 </section>
-<section id="reusing-code" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="reusing-code"><span class="header-section-number">11.3</span> Reusing Code</h2>
+<section id="reusing-code" class="level2">
+<h2 class="anchored" data-anchor-id="reusing-code">Reusing Code</h2>
 <p>The following code can be reused from the Roo Code codebase:</p>
 <ul>
 <li><strong>LLM Interaction Code:</strong> The code in the <code>src/api</code> directory can be reused to interact with the LLMs. This code handles the communication with the different LLM providers and provides a consistent interface for accessing the LLMs.</li>
@@ -354,8 +403,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Core Utilities:</strong> The code in the <code>src/utils</code> directory can be reused for various utility functions. These functions provide common functionalities such as file system operations, string manipulation, and data transformations.</li>
 </ul>
 </section>
-<section id="adapting-vs-code-api-calls" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="adapting-vs-code-api-calls"><span class="header-section-number">11.4</span> Adapting VS Code API Calls</h2>
+<section id="adapting-vs-code-api-calls" class="level2">
+<h2 class="anchored" data-anchor-id="adapting-vs-code-api-calls">Adapting VS Code API Calls</h2>
 <p>The following VS Code API calls need to be replaced with the corresponding IntelliJ API calls:</p>
 <ul>
 <li><code>vscode.commands.registerCommand</code>: Use <code>com.intellij.openapi.actionSystem.AnAction</code> to register a new action.</li>
@@ -363,12 +412,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>vscode.ExtensionContext</code>: Use <code>com.intellij.openapi.components.ApplicationComponent</code> or <code>com.intellij.openapi.components.ProjectComponent</code> to access the plugin’s context.</li>
 </ul>
 </section>
-<section id="implementing-the-ui" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="implementing-the-ui"><span class="header-section-number">11.5</span> Implementing the UI</h2>
+<section id="implementing-the-ui" class="level2">
+<h2 class="anchored" data-anchor-id="implementing-the-ui">Implementing the UI</h2>
 <p>The webview UI needs to be reimplemented using the IntelliJ UI framework. You can use Swing or JavaFX to create the UI. Consider using existing UI components from the IntelliJ Platform SDK to maintain a consistent look and feel.</p>
 </section>
-<section id="plugin.xml" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="plugin.xml"><span class="header-section-number">11.6</span> plugin.xml</h2>
+<section id="plugin.xml" class="level2">
+<h2 class="anchored" data-anchor-id="plugin.xml">plugin.xml</h2>
 <p>The <code>plugin.xml</code> file describes the plugin to the IntelliJ IDEA IDE. Here is an example <code>plugin.xml</code> file:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">idea-plugin</span>&gt;</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">id</span>&gt;com.example.roocode.intellij&lt;/<span class="kw">id</span>&gt;</span>
@@ -391,8 +440,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">actions</span>&gt;</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">idea-plugin</span>&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="running-roo-code-in-a-containersandbox" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="running-roo-code-in-a-containersandbox"><span class="header-section-number">11.7</span> Running Roo Code in a Container/Sandbox</h2>
+<section id="running-roo-code-in-a-containersandbox" class="level2">
+<h2 class="anchored" data-anchor-id="running-roo-code-in-a-containersandbox">Running Roo Code in a Container/Sandbox</h2>
 <p>To enhance security and isolation, you might consider running the core Roo Code logic (LLM interactions, MCP) within a container or sandbox environment inside the IntelliJ plugin. Here are a few options:</p>
 <ul>
 <li><strong>Docker Container:</strong> Package the core logic into a Docker container and use the IntelliJ plugin to communicate with the container via a REST API. This provides strong isolation and allows you to manage dependencies separately.</li>
@@ -824,13 +873,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../llm_docs/integrations.html" class="pagination-link" aria-label="Integrations Architecture">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Integrations Architecture</span></span>
+      <a href="../llm_docs/messages.html" class="pagination-link" aria-label="Extension Messages">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Extension Messages</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../llm_docs/llms.html" class="pagination-link" aria-label="Language Models (LLMs)">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Language Models (LLMs)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../llm_docs/integrations.html" class="pagination-link" aria-label="Integrations Architecture">
+        <span class="nav-page-text"><span class="chapter-title">Integrations Architecture</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

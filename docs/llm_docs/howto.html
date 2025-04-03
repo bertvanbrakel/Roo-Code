@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; How-To Guide – Roo Code LLM Docs</title>
+<title>How-To Guide – Roo Code LLM Docs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../llm_docs/integrations.html" rel="next">
-<link href="../llm_docs/git.html" rel="prev">
+<link href="../llm_docs/settings.html" rel="next">
+<link href="../llm_docs/webview-ui-structure.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1bb58123569419082c201f8cb3f5049c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fef47fc9a930a3d1d88f47a9f4a83c65.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -62,7 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
+    "search-text-placeholder": "Search",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../llm_docs/howto.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">How-To Guide</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../llm_docs/howto.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../llm_docs/howto.html"><span class="chapter-title">How-To Guide</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -108,154 +108,197 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome to the Roo Code Docs</span></span></a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Welcome to the Roo Code Docs</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/api.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">API Architecture</span></span></a>
+  <a href="../llm_docs/overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Project Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Core Architecture</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/core.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Core Architecture</span></span></a>
+  <a href="../llm_docs/extension.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Extension Activation</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/cost.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cost Calculation</span></span></a>
+  <a href="../llm_docs/core.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Core Architecture</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/cross-platform-app.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">How to Make Roo Code Run as a Standalone Cross-Platform App</span></span></a>
+  <a href="../llm_docs/modes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Modes</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Language Model Integration</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/extension.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Extension Activation</span></span></a>
+  <a href="../llm_docs/llms.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Language Models (LLMs)</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/fs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">File System Utilities</span></span></a>
+  <a href="../llm_docs/api.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">API Architecture</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Git Utilities</span></span></a>
+  <a href="../llm_docs/tool-selection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tool Selection</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/howto.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">How-To Guide</span></span></a>
+  <a href="../llm_docs/chat-flow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chat Interaction Flow</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">External Integrations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/integrations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Integrations Architecture</span></span></a>
+  <a href="../llm_docs/mcp.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">MCP Integration</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/intellij-plugin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">How to Create an IntelliJ Plugin from the Roo Code Codebase</span></span></a>
+  <a href="../llm_docs/services.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Services Architecture</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Webview UI</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/llms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Language Models (LLMs)</span></span></a>
+  <a href="../llm_docs/webview-ui.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Webview UI Architecture</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/mcp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">MCP Integration</span></span></a>
+  <a href="../llm_docs/webview-ui-structure.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Webview UI Structure</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">How-To Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/messages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Extension Messages</span></span></a>
+  <a href="../llm_docs/howto.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">How-To Guide</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/modes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Modes</span></span></a>
+  <a href="../llm_docs/settings.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Settings</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Utilities</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Project Overview</span></span></a>
+  <a href="../llm_docs/cost.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Cost Calculation</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/plan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Codebase Analysis Plan</span></span></a>
+  <a href="../llm_docs/fs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">File System Utilities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/services.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Services Architecture</span></span></a>
+  <a href="../llm_docs/git.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Git Utilities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/settings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Settings</span></span></a>
+  <a href="../llm_docs/messages.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Extension Messages</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Other</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/shell.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Shell Utilities</span></span></a>
+  <a href="../llm_docs/intellij-plugin.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">How to Create an IntelliJ Plugin from the Roo Code Codebase</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../llm_docs/sound.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Sound Utilities</span></span></a>
+  <a href="../llm_docs/integrations.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Integrations Architecture</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../llm_docs/telemetry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Telemetry Settings</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../llm_docs/vscode-extensions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">How VS Code Extensions Work</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../llm_docs/webview-ui.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Webview UI Architecture</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../llm_docs/webview-ui-structure.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Webview UI Structure</span></span></a>
-  </div>
-</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -266,26 +309,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#changing-system-prompts" id="toc-changing-system-prompts" class="nav-link active" data-scroll-target="#changing-system-prompts"><span class="header-section-number">9.1</span> Changing System Prompts</a></li>
-  <li><a href="#adding-a-new-chat-ui-element" id="toc-adding-a-new-chat-ui-element" class="nav-link" data-scroll-target="#adding-a-new-chat-ui-element"><span class="header-section-number">9.2</span> Adding a New Chat UI Element</a></li>
-  <li><a href="#adding-additional-settings-pages" id="toc-adding-additional-settings-pages" class="nav-link" data-scroll-target="#adding-additional-settings-pages"><span class="header-section-number">9.3</span> Adding Additional Settings Pages</a></li>
-  <li><a href="#adding-a-new-ui-panel" id="toc-adding-a-new-ui-panel" class="nav-link" data-scroll-target="#adding-a-new-ui-panel"><span class="header-section-number">9.4</span> Adding a New UI Panel</a></li>
-  <li><a href="#adding-extensions-to-roo" id="toc-adding-extensions-to-roo" class="nav-link" data-scroll-target="#adding-extensions-to-roo"><span class="header-section-number">9.5</span> Adding Extensions to ROO</a></li>
-  <li><a href="#how-to-run-tests" id="toc-how-to-run-tests" class="nav-link" data-scroll-target="#how-to-run-tests"><span class="header-section-number">9.6</span> How to Run Tests</a></li>
-  <li><a href="#how-to-modify-the-mcp-tool-calls" id="toc-how-to-modify-the-mcp-tool-calls" class="nav-link" data-scroll-target="#how-to-modify-the-mcp-tool-calls"><span class="header-section-number">9.7</span> How to Modify the MCP Tool Calls</a></li>
-  <li><a href="#how-to-launch-child-tasks" id="toc-how-to-launch-child-tasks" class="nav-link" data-scroll-target="#how-to-launch-child-tasks"><span class="header-section-number">9.8</span> How to Launch Child Tasks</a></li>
-  <li><a href="#how-to-chain-agents-together" id="toc-how-to-chain-agents-together" class="nav-link" data-scroll-target="#how-to-chain-agents-together"><span class="header-section-number">9.9</span> How to Chain Agents Together</a></li>
-  <li><a href="#how-to-have-a-chain-with-a-coordinator-agent" id="toc-how-to-have-a-chain-with-a-coordinator-agent" class="nav-link" data-scroll-target="#how-to-have-a-chain-with-a-coordinator-agent"><span class="header-section-number">9.10</span> How to Have a Chain with a Coordinator Agent</a></li>
-  <li><a href="#does-this-codebase-support-sub-sub-tasks" id="toc-does-this-codebase-support-sub-sub-tasks" class="nav-link" data-scroll-target="#does-this-codebase-support-sub-sub-tasks"><span class="header-section-number">9.11</span> Does this codebase support sub sub tasks?</a></li>
+  <li><a href="#changing-system-prompts" id="toc-changing-system-prompts" class="nav-link active" data-scroll-target="#changing-system-prompts">Changing System Prompts</a></li>
+  <li><a href="#adding-a-new-chat-ui-element" id="toc-adding-a-new-chat-ui-element" class="nav-link" data-scroll-target="#adding-a-new-chat-ui-element">Adding a New Chat UI Element</a></li>
+  <li><a href="#adding-additional-settings-pages" id="toc-adding-additional-settings-pages" class="nav-link" data-scroll-target="#adding-additional-settings-pages">Adding Additional Settings Pages</a></li>
+  <li><a href="#adding-a-new-ui-panel" id="toc-adding-a-new-ui-panel" class="nav-link" data-scroll-target="#adding-a-new-ui-panel">Adding a New UI Panel</a></li>
+  <li><a href="#adding-extensions-to-roo" id="toc-adding-extensions-to-roo" class="nav-link" data-scroll-target="#adding-extensions-to-roo">Adding Extensions to ROO</a></li>
+  <li><a href="#how-to-run-tests" id="toc-how-to-run-tests" class="nav-link" data-scroll-target="#how-to-run-tests">How to Run Tests</a></li>
+  <li><a href="#how-to-modify-the-mcp-tool-calls" id="toc-how-to-modify-the-mcp-tool-calls" class="nav-link" data-scroll-target="#how-to-modify-the-mcp-tool-calls">How to Modify the MCP Tool Calls</a></li>
+  <li><a href="#how-to-launch-child-tasks" id="toc-how-to-launch-child-tasks" class="nav-link" data-scroll-target="#how-to-launch-child-tasks">How to Launch Child Tasks</a></li>
+  <li><a href="#how-to-chain-agents-together" id="toc-how-to-chain-agents-together" class="nav-link" data-scroll-target="#how-to-chain-agents-together">How to Chain Agents Together</a></li>
+  <li><a href="#how-to-have-a-chain-with-a-coordinator-agent" id="toc-how-to-have-a-chain-with-a-coordinator-agent" class="nav-link" data-scroll-target="#how-to-have-a-chain-with-a-coordinator-agent">How to Have a Chain with a Coordinator Agent</a></li>
+  <li><a href="#does-this-codebase-support-sub-sub-tasks" id="toc-does-this-codebase-support-sub-sub-tasks" class="nav-link" data-scroll-target="#does-this-codebase-support-sub-sub-tasks">Does this codebase support sub sub tasks?</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../llm_docs/howto.html">How-To Guides</a></li><li class="breadcrumb-item"><a href="../llm_docs/howto.html"><span class="chapter-title">How-To Guide</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">How-To Guide</span></h1>
+<h1 class="title"><span class="chapter-title">How-To Guide</span></h1>
 </div>
 
 
@@ -303,13 +346,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>This document provides guidance on how to perform common tasks in the Roo Code codebase. It serves as a practical guide for developers who want to contribute to the project or customize its functionality.</p>
-<p>For a general overview of how VS Code extensions work, see the <a href="../llm_docs/vscode-extensions.html">VS Code Extensions document</a>.</p>
+<p>For a general overview of how VS Code extensions work, see the <a href="vscode-extensions.md">VS Code Extensions document</a>.</p>
 <ul>
 <li><a href="../llm_docs/intellij-plugin.html">How to Create an IntelliJ Plugin</a></li>
-<li><a href="../llm_docs/cross-platform-app.html">How to Make Roo Code Run as a Standalone Cross-Platform App</a></li>
+<li><a href="cross-platform-app.md">How to Make Roo Code Run as a Standalone Cross-Platform App</a></li>
 </ul>
-<section id="changing-system-prompts" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="changing-system-prompts"><span class="header-section-number">9.1</span> Changing System Prompts</h2>
+<section id="changing-system-prompts" class="level2">
+<h2 class="anchored" data-anchor-id="changing-system-prompts">Changing System Prompts</h2>
 <p>To change the way system prompts work, you need to modify the <a href="../src/shared/modes.ts"><code>src/shared/modes.ts</code></a> file. This file defines the different modes of the extension, and each mode has a <code>roleDefinition</code> and <code>customInstructions</code> property that define the system prompt for that mode.</p>
 <ol type="1">
 <li><p><strong>Edit the <a href="../src/shared/modes.ts"><code>src/shared/modes.ts</code></a> file.</strong> This file contains the configuration for all the available modes.</p></li>
@@ -320,8 +363,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ol>
 </section>
-<section id="adding-a-new-chat-ui-element" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="adding-a-new-chat-ui-element"><span class="header-section-number">9.2</span> Adding a New Chat UI Element</h2>
+<section id="adding-a-new-chat-ui-element" class="level2">
+<h2 class="anchored" data-anchor-id="adding-a-new-chat-ui-element">Adding a New Chat UI Element</h2>
 <p>To add a new chat UI element, you need to modify the <a href="../webview-ui/src/components/chat/ChatView.tsx"><code>webview-ui/src/components/chat/ChatView.tsx</code></a> file. This file defines the chat interface.</p>
 <ol type="1">
 <li><strong>Edit the <a href="../webview-ui/src/components/chat/ChatView.tsx"><code>webview-ui/src/components/chat/ChatView.tsx</code></a> file.</strong> This file contains the React component that renders the chat interface.</li>
@@ -329,8 +372,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Update the state management logic to handle the new UI element.</strong> You may need to add new state variables to the <code>ChatView</code> component and update the event handlers to handle the new UI element. Use React’s <code>useState</code> hook to manage the state of the UI element.</li>
 </ol>
 </section>
-<section id="adding-additional-settings-pages" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="adding-additional-settings-pages"><span class="header-section-number">9.3</span> Adding Additional Settings Pages</h2>
+<section id="adding-additional-settings-pages" class="level2">
+<h2 class="anchored" data-anchor-id="adding-additional-settings-pages">Adding Additional Settings Pages</h2>
 <p>To add additional settings pages, you need to modify the <a href="../webview-ui/src/components/settings/SettingsView.tsx"><code>webview-ui/src/components/settings/SettingsView.tsx</code></a> file. This file defines the settings interface.</p>
 <ol type="1">
 <li><strong>Edit the <a href="../webview-ui/src/components/settings/SettingsView.tsx"><code>webview-ui/src/components/settings/SettingsView.tsx</code></a> file.</strong> This file contains the React component that renders the settings interface.</li>
@@ -339,8 +382,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Update the state management logic to handle the new settings.</strong> You may need to add new state variables to the <code>SettingsView</code> component and update the event handlers to handle the new settings.</li>
 </ol>
 </section>
-<section id="adding-a-new-ui-panel" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="adding-a-new-ui-panel"><span class="header-section-number">9.4</span> Adding a New UI Panel</h2>
+<section id="adding-a-new-ui-panel" class="level2">
+<h2 class="anchored" data-anchor-id="adding-a-new-ui-panel">Adding a New UI Panel</h2>
 <p>To add a new UI Panel, you need to modify the <a href="../src/extension.ts"><code>src/extension.ts</code></a> file. This file is the main entry point for the extension.</p>
 <ol type="1">
 <li><strong>Edit the <a href="../src/extension.ts"><code>src/extension.ts</code></a> file.</strong></li>
@@ -349,8 +392,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Update the state management logic to handle the new UI panel.</strong> You may need to add new state variables to the extension and update the event handlers to handle the new UI panel.</li>
 </ol>
 </section>
-<section id="adding-extensions-to-roo" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="adding-extensions-to-roo"><span class="header-section-number">9.5</span> Adding Extensions to ROO</h2>
+<section id="adding-extensions-to-roo" class="level2">
+<h2 class="anchored" data-anchor-id="adding-extensions-to-roo">Adding Extensions to ROO</h2>
 <p>To add extensions to ROO, you need to modify the <a href="../package.json"><code>package.json</code></a> file. This file contains the extension’s metadata, dependencies, and build scripts.</p>
 <ol type="1">
 <li><strong>Edit the <a href="../package.json"><code>package.json</code></a> file.</strong></li>
@@ -358,14 +401,14 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Update the build scripts to include the extension in the build process.</strong> You may need to modify the <code>esbuild.js</code> file to include the extension in the build process.</li>
 </ol>
 </section>
-<section id="how-to-run-tests" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="how-to-run-tests"><span class="header-section-number">9.6</span> How to Run Tests</h2>
+<section id="how-to-run-tests" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-run-tests">How to Run Tests</h2>
 <p>To run tests, you can use the following command:</p>
 <pre><code>npm run test</code></pre>
 <p>This command will run all the tests in the project. The test files are located in the <a href="../src/__tests__"><code>src/__tests__</code></a> and <a href="../webview-ui/src/__tests__"><code>webview-ui/src/__tests__</code></a> directories.</p>
 </section>
-<section id="how-to-modify-the-mcp-tool-calls" class="level2" data-number="9.7">
-<h2 data-number="9.7" class="anchored" data-anchor-id="how-to-modify-the-mcp-tool-calls"><span class="header-section-number">9.7</span> How to Modify the MCP Tool Calls</h2>
+<section id="how-to-modify-the-mcp-tool-calls" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-modify-the-mcp-tool-calls">How to Modify the MCP Tool Calls</h2>
 <p>To modify the MCP tool calls, you need to modify the <a href="../src/services/mcp/McpHub.ts"><code>src/services/mcp/McpHub.ts</code></a> file. This file contains the code for calling the MCP tools.</p>
 <ol type="1">
 <li><strong>Edit the <a href="../src/services/mcp/McpHub.ts"><code>src/services/mcp/McpHub.ts</code></a> file.</strong></li>
@@ -373,16 +416,16 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Modify the <code>callTool</code> function to change the way the MCP tools are called.</strong> You can modify the arguments that are passed to the tools or the way the results are handled.</li>
 </ol>
 </section>
-<section id="how-to-launch-child-tasks" class="level2" data-number="9.8">
-<h2 data-number="9.8" class="anchored" data-anchor-id="how-to-launch-child-tasks"><span class="header-section-number">9.8</span> How to Launch Child Tasks</h2>
+<section id="how-to-launch-child-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-launch-child-tasks">How to Launch Child Tasks</h2>
 <p>To launch child tasks, you can use the <a href="../src/extension.ts"><code>newTask</code> tool</a>. This tool allows you to create a new task with a specified mode and initial message.</p>
 <ol type="1">
 <li><strong>Use the <a href="../src/extension.ts"><code>newTask</code> tool</a> to create a new task.</strong> You need to specify the mode and initial message for the new task.</li>
 <li><strong>The new task will be launched in a new Cline instance.</strong></li>
 </ol>
 </section>
-<section id="how-to-chain-agents-together" class="level2" data-number="9.9">
-<h2 data-number="9.9" class="anchored" data-anchor-id="how-to-chain-agents-together"><span class="header-section-number">9.9</span> How to Chain Agents Together</h2>
+<section id="how-to-chain-agents-together" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-chain-agents-together">How to Chain Agents Together</h2>
 <p>To chain agents together, you can use the <a href="../src/extension.ts"><code>newTask</code> tool</a> to launch a new task with a specific mode and initial message. The new task can then use the <a href="../src/extension.ts"><code>newTask</code> tool</a> to launch another task, and so on. This allows you to create a chain of agents that can work together to accomplish a complex task.</p>
 <ol type="1">
 <li><strong>Use the <a href="../src/extension.ts"><code>newTask</code> tool</a> to launch the first agent in the chain.</strong> You need to specify the mode and initial message for the first agent.</li>
@@ -391,8 +434,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>The agents will be launched in a sequence, with each agent passing its results to the next agent in the chain.</strong></li>
 </ol>
 </section>
-<section id="how-to-have-a-chain-with-a-coordinator-agent" class="level2" data-number="9.10">
-<h2 data-number="9.10" class="anchored" data-anchor-id="how-to-have-a-chain-with-a-coordinator-agent"><span class="header-section-number">9.10</span> How to Have a Chain with a Coordinator Agent</h2>
+<section id="how-to-have-a-chain-with-a-coordinator-agent" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-have-a-chain-with-a-coordinator-agent">How to Have a Chain with a Coordinator Agent</h2>
 <p>To have a chain with a coordinator agent, you can use the <a href="../src/extension.ts"><code>newTask</code> tool</a> to launch a coordinator agent. The coordinator agent can then use the <a href="../src/extension.ts"><code>newTask</code> tool</a> to launch the other agents in the chain. The coordinator agent can be responsible for coordinating the work of the other agents and for combining their results.</p>
 <ol type="1">
 <li><strong>Use the <a href="../src/extension.ts"><code>newTask</code> tool</a> to launch the coordinator agent.</strong> You need to specify the mode and initial message for the coordinator agent. The initial message should describe the overall task and the roles of the other agents.</li>
@@ -400,10 +443,11 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>The coordinator agent can then use the results from the other agents to accomplish the overall task.</strong> The coordinator agent can use the <code>read_file</code> tool to read the results from the other agents and the <code>apply_diff</code> tool to combine the results.</li>
 </ol>
 </section>
-<section id="does-this-codebase-support-sub-sub-tasks" class="level2" data-number="9.11">
-<h2 data-number="9.11" class="anchored" data-anchor-id="does-this-codebase-support-sub-sub-tasks"><span class="header-section-number">9.11</span> Does this codebase support sub sub tasks?</h2>
+<section id="does-this-codebase-support-sub-sub-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="does-this-codebase-support-sub-sub-tasks">Does this codebase support sub sub tasks?</h2>
 <p>While there’s no explicit code preventing the creation of sub-sub-tasks (a task launched from a child task), full support isn’t guaranteed. The system is designed to launch child tasks, but the implications of deeply nested task chains haven’t been fully explored. Use with caution.</p>
 <p>For information on how to add a new setting to the extension, see the <a href="../llm_docs/settings.html">Settings document</a>.</p>
+<p>For information on how the extension determines if a tool is required, see the <a href="../llm_docs/tool-selection.html">Tool Selection document</a>.</p>
 
 
 </section>
@@ -828,13 +872,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../llm_docs/git.html" class="pagination-link" aria-label="Git Utilities">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Git Utilities</span></span>
+      <a href="../llm_docs/webview-ui-structure.html" class="pagination-link" aria-label="Webview UI Structure">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Webview UI Structure</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../llm_docs/integrations.html" class="pagination-link" aria-label="Integrations Architecture">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Integrations Architecture</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../llm_docs/settings.html" class="pagination-link" aria-label="Settings">
+        <span class="nav-page-text"><span class="chapter-title">Settings</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

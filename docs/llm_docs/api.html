@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../llm_docs/mcp.html" rel="next">
+<link href="../llm_docs/tool-selection.html" rel="next">
 <link href="../llm_docs/llms.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -204,6 +204,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../llm_docs/api.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">API Architecture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../llm_docs/tool-selection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tool Selection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../llm_docs/chat-flow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chat Interaction Flow</span></a>
   </div>
 </li>
       </ul>
@@ -372,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="../src/api/index.ts"><code>index.ts</code></a>: This file defines the main API entry point and provides functions for accessing the different LLM providers. It also includes functions for combining multiple API requests and handling errors.</li>
 <li><a href="../src/api/providers/"><code>providers/</code></a>: This directory contains the implementations for the different LLM providers, such as OpenAI, Anthropic, and others. Each provider implements the <code>BaseProvider</code> interface and handles the specific API calls and data transformations required for each LLM service.</li>
 <li><a href="../src/api/providers/base-provider.ts"><code>providers/base-provider.ts</code></a>: This file defines the <code>BaseProvider</code> interface, which outlines the common methods that all LLM providers must implement. This ensures a consistent API for interacting with different LLMs.</li>
-<li><a href="../src/api/providers/openai.ts"><code>providers/openai.ts</code></a>: This file implements the OpenAI provider, which uses the OpenAI API to interact with the OpenAI models. It includes functions for making API calls, handling authentication, and transforming the data.</li>
+<li><a href="../src/api/providers/openai.ts"><code>providers/openai.ts</code></a>: This file implements the OpenAI provider, which uses the OpenAI API to interact with the OpenAI models. It includes functions for making API calls, handling authentication (including Azure OpenAI), and transforming the data.</li>
 <li><a href="../src/api/transform/"><code>transform/</code></a>: This directory contains the code for transforming the input and output of the LLM providers. This is necessary because different LLMs may have different input and output formats. The transformations ensure that the data is in the correct format for each LLM.</li>
 </ul>
 </section>
@@ -383,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> <span class="st">"anthropic"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> <span class="st">"glama"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> <span class="st">"openrouter"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> <span class="st">"bedrock"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> <span class="st">"bedrock"</span> <span class="co">// AwsBedrockHandler</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> <span class="st">"vertex"</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> <span class="st">"openai"</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span> <span class="st">"ollama"</span></span>
@@ -428,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data-transformations" class="level2">
 <h2 class="anchored" data-anchor-id="data-transformations">Data Transformations</h2>
-<p>The <code>transform/</code> directory contains code for transforming the input and output of the LLM providers. For example, the <code>transform/openai.ts</code> file might contain code for converting the input prompt into the format expected by the OpenAI API, and for converting the output from the OpenAI API into a more generic format.</p>
+<p>The <code>transform/</code> directory contains code for transforming the input and output of the LLM providers. For example, the <code>transform/openai-format.ts</code> file contains code for converting Anthropic messages into the format expected by the OpenAI API.</p>
 
 
 </section>
@@ -858,8 +868,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../llm_docs/mcp.html" class="pagination-link" aria-label="MCP Integration">
-        <span class="nav-page-text"><span class="chapter-title">MCP Integration</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../llm_docs/tool-selection.html" class="pagination-link" aria-label="Tool Selection">
+        <span class="nav-page-text"><span class="chapter-title">Tool Selection</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

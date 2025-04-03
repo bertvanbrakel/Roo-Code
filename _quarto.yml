@@ -20,6 +20,8 @@ book:
       chapters:     
       - llm_docs/llms.md
       - llm_docs/api.md
+      - llm_docs/tool-selection.md
+      - llm_docs/chat-flow.qmd
 
     - part: External Integrations
       chapters:     

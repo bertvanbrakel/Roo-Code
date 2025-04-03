@@ -172,6 +172,16 @@ ul.task-list li input[type="checkbox"] {
   <a href="../llm_docs/api.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">API Architecture</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../llm_docs/tool-selection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Tool Selection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../llm_docs/chat-flow.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Chat Interaction Flow</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -343,10 +353,10 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="../src/core/contextProxy.ts"><code>contextProxy.ts</code></a>: This file manages the context proxy, which provides access to VS Code’s API and other extension-related information. It allows the core components to access VS Code functionality without directly importing the VS Code API.</li>
 <li><a href="../src/core/EditorUtils.ts"><code>EditorUtils.ts</code></a>: This file provides utility functions for interacting with the VS Code editor. These functions include:
 <ul>
-<li>Getting the current text editor.</li>
-<li>Getting the selected text.</li>
-<li>Inserting text into the editor.</li>
-<li>Replacing text in the editor.</li>
+<li>Getting the effective range of text.</li>
+<li>Getting the file path of a document.</li>
+<li>Converting VSCode Diagnostic objects to DiagnosticData instances.</li>
+<li>Determining if two VSCode ranges intersect.</li>
 </ul></li>
 <li><a href="../src/core/mode-validator.ts"><code>mode-validator.ts</code></a>: This file validates the current mode of the extension. It ensures that the user is in a valid mode and that the mode has the necessary permissions to perform the requested action.</li>
 <li><a href="../src/core/webview/"><code>webview/</code></a>: This directory contains the code for managing the webview, which is used to display the user interface. It includes the <code>ClineProvider</code> class, which is responsible for creating and managing the webview panel.</li>

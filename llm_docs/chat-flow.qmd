@@ -1,0 +1,39 @@
+# Chat Interaction Flow
+
+This document describes the flow of messages and MCP tool calls in the Roo Code extension.
+
+```{mermaid}
+sequenceDiagram
+    participant User as User
+    participant VSCode as VS Code
+    participant ClineProvider as ClineProvider [[../src/core/webview/ClineProvider.ts]]
+    participant Cline as Cline [[../src/core/Cline.ts]]
+    participant APIProvider as APIProvider [[../src/api/providers/base-provider.ts]]
+    participant LLM as LLM
+    participant ToolManager as ToolManager
+    participant MCP as MCP Server
+
+    User->>VSCode: Enters message in Cline
+    VSCode->>ClineProvider: postMessageToWebview({type: "userMessage", text: message})
+    ClineProvider->>Cline: Handles user message
+    Cline->>ToolManager: Determines if tool is needed
+    alt Tool is needed
+        ToolManager->>APIProvider: Sends request to tool
+        APIProvider->>LLM: Sends request to LLM to use tool
+        LLM-->>APIProvider: Returns tool name and arguments
+        APIProvider->>MCP: callTool(toolName, arguments)
+        MCP-->>APIProvider: Returns tool result
+        APIProvider->>Cline: Transforms tool result
+        Cline->>ClineProvider: postMessageToWebview({type: "toolResult", text: toolResult})
+        ClineProvider->>VSCode: Displays tool result in Cline
+        VSCode->>User: Displays tool result
+    else Tool is not needed
+        Cline->>APIProvider: Sends message to API Provider
+        APIProvider->>LLM: Sends request to LLM
+        LLM-->>APIProvider: Returns response
+        APIProvider->>Cline: Transforms response
+        Cline->>ClineProvider: postMessageToWebview({type: "assistantMessage", text: response})
+        ClineProvider->>VSCode: Displays message in Cline
+        VSCode->>User: Displays message
+    end
+```

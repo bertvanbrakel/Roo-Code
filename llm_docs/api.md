@@ -4,11 +4,11 @@ The `api` directory defines the API for interacting with different language mode
 
 ## Key Components
 
-*   [`index.ts`](../src/api/index.ts): This file defines the main API entry point and provides functions for accessing the different LLM providers. It also includes functions for combining multiple API requests and handling errors.
-*   [`providers/`](../src/api/providers/): This directory contains the implementations for the different LLM providers, such as OpenAI, Anthropic, and others. Each provider implements the `BaseProvider` interface and handles the specific API calls and data transformations required for each LLM service.
-*   [`providers/base-provider.ts`](../src/api/providers/base-provider.ts): This file defines the `BaseProvider` interface, which outlines the common methods that all LLM providers must implement. This ensures a consistent API for interacting with different LLMs.
-*   [`providers/openai.ts`](../src/api/providers/openai.ts): This file implements the OpenAI provider, which uses the OpenAI API to interact with the OpenAI models. It includes functions for making API calls, handling authentication, and transforming the data.
-*   [`transform/`](../src/api/transform/): This directory contains the code for transforming the input and output of the LLM providers. This is necessary because different LLMs may have different input and output formats. The transformations ensure that the data is in the correct format for each LLM.
+- [`index.ts`](../src/api/index.ts): This file defines the main API entry point and provides functions for accessing the different LLM providers. It also includes functions for combining multiple API requests and handling errors.
+- [`providers/`](../src/api/providers/): This directory contains the implementations for the different LLM providers, such as OpenAI, Anthropic, and others. Each provider implements the `BaseProvider` interface and handles the specific API calls and data transformations required for each LLM service.
+- [`providers/base-provider.ts`](../src/api/providers/base-provider.ts): This file defines the `BaseProvider` interface, which outlines the common methods that all LLM providers must implement. This ensures a consistent API for interacting with different LLMs.
+- [`providers/openai.ts`](../src/api/providers/openai.ts): This file implements the OpenAI provider, which uses the OpenAI API to interact with the OpenAI models. It includes functions for making API calls, handling authentication (including Azure OpenAI), and transforming the data.
+- [`transform/`](../src/api/transform/): This directory contains the code for transforming the input and output of the LLM providers. This is necessary because different LLMs may have different input and output formats. The transformations ensure that the data is in the correct format for each LLM.
 
 ## ApiProvider Type
 
@@ -19,7 +19,7 @@ export type ApiProvider =
 	| "anthropic"
 	| "glama"
 	| "openrouter"
-	| "bedrock"
+	| "bedrock" // AwsBedrockHandler
 	| "vertex"
 	| "openai"
 	| "ollama"
@@ -70,4 +70,4 @@ The API includes error handling to deal with issues such as API rate limits, aut
 
 ## Data Transformations
 
-The `transform/` directory contains code for transforming the input and output of the LLM providers. For example, the `transform/openai.ts` file might contain code for converting the input prompt into the format expected by the OpenAI API, and for converting the output from the OpenAI API into a more generic format.
+The `transform/` directory contains code for transforming the input and output of the LLM providers. For example, the `transform/openai-format.ts` file contains code for converting Anthropic messages into the format expected by the OpenAI API.

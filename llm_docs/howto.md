@@ -4,8 +4,8 @@ This document provides guidance on how to perform common tasks in the Roo Code c
 
 For a general overview of how VS Code extensions work, see the [VS Code Extensions document](vscode-extensions.md).
 
-*   [How to Create an IntelliJ Plugin](intellij-plugin.md)
-*   [How to Make Roo Code Run as a Standalone Cross-Platform App](cross-platform-app.md)
+- [How to Create an IntelliJ Plugin](intellij-plugin.md)
+- [How to Make Roo Code Run as a Standalone Cross-Platform App](cross-platform-app.md)
 
 ## Changing System Prompts
 
@@ -15,7 +15,7 @@ To change the way system prompts work, you need to modify the [`src/shared/modes
 2.  **Find the mode configuration you want to modify.** The `modes` array contains the configuration for each mode. Each mode object has properties like `slug`, `name`, `roleDefinition`, and `customInstructions`.
 3.  **Update the `roleDefinition` and/or `customInstructions` property.** The `roleDefinition` property defines the role of the mode, and the `customInstructions` property provides custom instructions for the mode. These properties are used to generate the system prompt that is sent to the LLM.
 
-    *   **Example:**
+    - **Example:**
         ```typescript
         {
             slug: "code",
@@ -107,3 +107,5 @@ To have a chain with a coordinator agent, you can use the [`newTask` tool](../sr
 While there's no explicit code preventing the creation of sub-sub-tasks (a task launched from a child task), full support isn't guaranteed. The system is designed to launch child tasks, but the implications of deeply nested task chains haven't been fully explored. Use with caution.
 
 For information on how to add a new setting to the extension, see the [Settings document](settings.md).
+
+For information on how the extension determines if a tool is required, see the [Tool Selection document](tool-selection.md).
