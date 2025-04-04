@@ -53,6 +53,7 @@ book:
 format:
   html:
     theme: cosmo
+    # highlight-style: github # Keep highlighting style commented/removed
     code-copy: true
     number-sections: false
 
