@@ -1361,8 +1361,6 @@ export class Cline {
 							return `[${block.name} for '${block.params.regex}'${
 								block.params.file_pattern ? ` in '${block.params.file_pattern}'` : ""
 							}]`
-						case "insert_content":
-							return `[${block.name} for '${block.params.path}']`
 						case "search_and_replace":
 							return `[${block.name} for '${block.params.path}']`
 						case "list_files":
@@ -1389,6 +1387,8 @@ export class Cline {
 							const modeName = getModeBySlug(mode, customModes)?.name ?? mode
 							return `[${block.name} in ${modeName} mode: '${message}']`
 						}
+						default:
+							return `[${block.name}]`
 					}
 				}
 
@@ -1574,165 +1574,6 @@ export class Cline {
 						
 						break;
 					}
-
-					case "insert_content": {
-						const relPath: string | undefined = block.params.path
-						const operations: string | undefined = block.params.operations
-
-						const sharedMessageProps: ClineSayTool = {
-							tool: "appliedDiff",
-							path: getReadablePath(cwd, removeClosingTag("path", relPath)),
-						}
-
-						try {
-							if (block.partial) {
-								const partialMessage = JSON.stringify(sharedMessageProps)
-								await this.ask("tool", partialMessage, block.partial).catch(() => {})
-								break
-							}
-
-							// Validate required parameters
-							if (!relPath) {
-								this.consecutiveMistakeCount++
-								pushToolResult(await this.sayAndCreateMissingParamError("insert_content", "path"))
-								break
-							}
-
-							if (!operations) {
-								this.consecutiveMistakeCount++
-								pushToolResult(await this.sayAndCreateMissingParamError("insert_content", "operations"))
-								break
-							}
-
-							const absolutePath = path.resolve(cwd, relPath)
-							const fileExists = await fileExistsAtPath(absolutePath)
-
-							if (!fileExists) {
-								this.consecutiveMistakeCount++
-								const formattedError = `File does not exist at path: ${absolutePath}\n\n<error_details>\nThe specified file could not be found. Please verify the file path and try again.\n</error_details>`
-								await this.say("error", formattedError)
-								pushToolResult(formattedError)
-								break
-							}
-
-							let parsedOperations: Array<{
-								start_line: number
-								content: string
-							}>
-
-							try {
-								parsedOperations = JSON.parse(operations)
-								if (!Array.isArray(parsedOperations)) {
-									throw new Error("Operations must be an array")
-								}
-							} catch (error) {
-								this.consecutiveMistakeCount++
-								await this.say("error", `Failed to parse operations JSON: ${error.message}`)
-								pushToolResult(formatResponse.toolError("Invalid operations JSON format"))
-								break
-							}
-
-							this.consecutiveMistakeCount = 0
-
-							// Read the file
-							const fileContent = await fs.readFile(absolutePath, "utf8")
-							this.diffViewProvider.editType = "modify"
-							this.diffViewProvider.originalContent = fileContent
-							const lines = fileContent.split("\n")
-
-							const updatedContent = insertGroups(
-								lines,
-								parsedOperations.map((elem) => {
-									return {
-										index: elem.start_line - 1,
-										elements: elem.content.split("\n"),
-									}
-								}),
-							).join("\n")
-
-							// Show changes in diff view
-							if (!this.diffViewProvider.isEditing) {
-								await this.ask("tool", JSON.stringify(sharedMessageProps), true).catch(() => {})
-								// First open with original content
-								await this.diffViewProvider.open(relPath)
-								await this.diffViewProvider.update(fileContent, false)
-								this.diffViewProvider.scrollToFirstDiff()
-								await delay(200)
-							}
-
-							const diff = formatResponse.createPrettyPatch(relPath, fileContent, updatedContent)
-
-							if (!diff) {
-								pushToolResult(`No changes needed for '${relPath}'`)
-								await this.diffViewProvider.reset() // Reset diff view even if no changes
-								break
-							}
-
-							await this.diffViewProvider.update(updatedContent, true)
-
-							const completeMessage = JSON.stringify({
-								...sharedMessageProps,
-								diff,
-							} satisfies ClineSayTool)
-
-							// Re-using askApproval logic from apply_diff helper
-							const askResult = await this.ask("tool", completeMessage, false)
-							const approved = askResult.response === "yesButtonClicked";
-							const { text: feedbackText, images: feedbackImages } = askResult;
-
-							if (!approved) {
-								await this.diffViewProvider.revertChanges()
-								if (feedbackText) {
-									await this.say("user_feedback", feedbackText, feedbackImages)
-									pushToolResult(formatResponse.toolResult(formatResponse.toolDeniedWithFeedback(feedbackText), feedbackImages))
-								} else {
-									pushToolResult(formatResponse.toolDenied())
-								}
-								this.didRejectTool = true; // Set rejection flag
-								break
-							}
-							// Handle approval with feedback
-							if (feedbackText) {
-								await this.say("user_feedback", feedbackText, feedbackImages)
-								pushToolResult(formatResponse.toolResult(formatResponse.toolApprovedWithFeedback(feedbackText), feedbackImages))
-							}
-
-							const { newProblemsMessage, userEdits, finalContent } =
-								await this.diffViewProvider.saveChanges()
-							this.didEditFile = true
-
-							if (!userEdits) {
-								pushToolResult(
-									`The content was successfully inserted in ${relPath.toPosix()}.${newProblemsMessage}`,
-								)
-							} else {
-								const userFeedbackDiff = JSON.stringify({
-									tool: "appliedDiff", // Keep consistent UI message
-									path: getReadablePath(cwd, relPath),
-									diff: userEdits,
-								} satisfies ClineSayTool)
-
-								console.debug("[DEBUG] User made edits, sending feedback diff:", userFeedbackDiff)
-								await this.say("user_feedback_diff", userFeedbackDiff)
-								pushToolResult(
-									`The user made the following updates to your content:\n\n${userEdits}\n\n` +
-										`The updated content, which includes both your original modifications and the user's edits, has been successfully saved to ${relPath.toPosix()}. Here is the full, updated content of the file:\n\n` +
-										`<final_file_content path="${relPath.toPosix()}">\n${addLineNumbers(finalContent || "")}\n</final_file_content>\n\n` +
-										`Please note:\n` +
-										`1. You do not need to re-write the file with these changes, as they have already been applied.\n` +
-										`2. Proceed with the task using this updated file content as the new baseline.\n` +
-										`3. If the user's edits have addressed part of the task or changed the requirements, adjust your approach accordingly.` +
-										`${newProblemsMessage}`,
-								)
-							}
-							await this.diffViewProvider.reset()
-						} catch (error) {
-							handleError("insert content", error) // Use handleError directly
-							this.diffViewProvider.reset() // Removed await
-						}
-						break
-					}
-
 					case "search_and_replace": {
 						const relPath: string | undefined = block.params.path
 						const operations: string | undefined = block.params.operations
@@ -1953,6 +1794,7 @@ export class Cline {
 								if (feedbackText) {
 									await this.say("user_feedback", feedbackText, feedbackImages)
 									pushToolResult(formatResponse.toolResult(formatResponse.toolApprovedWithFeedback(feedbackText), feedbackImages))
+								}
 								// now execute the tool like normal
 								const content = await extractTextFromFile(absolutePath)
 								pushToolResult(content)
@@ -1963,6 +1805,7 @@ export class Cline {
 							break
 						}
 					}
+
 					case "list_files": {
 						const relDirPath: string | undefined = block.params.path
 						const recursiveRaw: string | undefined = block.params.recursive
@@ -3705,191 +3548,9 @@ export class Cline {
 		}
 	}
 	// _executeWriteToFileTool method removed as it's now handled by ToolExecutor
+	// _executeApplyDiffTool method removed as it's now handled by ToolExecutor
+	// _executeInsertContentTool method removed as it's now handled by ToolExecutor
 
-	// Helper method for apply_diff tool
-// Removed duplicate _executeApplyDiffTool method definition
-	// Helper method for apply_diff tool
-	private async _executeApplyDiffTool(
-		block: ToolUse,
-		pushToolResult: (result: ToolResponse) => void,
-		askApproval: Function,
-		handleError: Function,
-		removeClosingTag: Function
-	): Promise<void> {
-		const relPath: string | undefined = block.params.path
-		const diffContent: string | undefined = block.params.diff
-
-		const sharedMessageProps: ClineSayTool = {
-			tool: "appliedDiff",
-			path: getReadablePath(cwd, removeClosingTag("path", relPath)),
-		}
-
-		try {
-			if (block.partial) {
-				// update gui message
-				let toolProgressStatus
-				if (this.diffStrategy && this.diffStrategy.getProgressStatus) {
-					toolProgressStatus = this.diffStrategy.getProgressStatus(block)
-				}
-
-				const partialMessage = JSON.stringify(sharedMessageProps)
-
-				await this.ask("tool", partialMessage, block.partial, toolProgressStatus).catch(
-					() => {},
-				)
-				return; // Replaced break
-			} else {
-				if (!relPath) {
-					this.consecutiveMistakeCount++
-					pushToolResult(await this.sayAndCreateMissingParamError("apply_diff", "path"))
-					return; // Replaced break
-				}
-				if (!diffContent) {
-					this.consecutiveMistakeCount++
-					pushToolResult(await this.sayAndCreateMissingParamError("apply_diff", "diff"))
-					return; // Replaced break
-				}
-
-				const accessAllowed = this.rooIgnoreController?.validateAccess(relPath)
-				if (!accessAllowed) {
-					await this.say("rooignore_error", relPath)
-					pushToolResult(formatResponse.toolError(formatResponse.rooIgnoreError(relPath)))
-					return; // Replaced break
-				}
-
-				const absolutePath = path.resolve(cwd, relPath)
-				const fileExists = await fileExistsAtPath(absolutePath)
-
-				if (!fileExists) {
-					this.consecutiveMistakeCount++
-					const formattedError = `File does not exist at path: ${absolutePath}\n\n<error_details>\nThe specified file could not be found. Please verify the file path and try again.\n</error_details>`
-					await this.say("error", formattedError)
-					pushToolResult(formattedError)
-					return; // Replaced break
-				}
-
-				const originalContent = await fs.readFile(absolutePath, "utf-8")
-
-				// Apply the diff to the original content
-				const diffResult = (await this.diffStrategy?.applyDiff(
-					originalContent,
-					diffContent,
-					parseInt(block.params.start_line ?? ""),
-					parseInt(block.params.end_line ?? ""),
-				)) ?? {
-					success: false,
-					error: "No diff strategy available",
-				}
-				let partResults = ""
-
-				if (!diffResult.success) {
-					this.consecutiveMistakeCount++
-					const currentCount =
-						(this.consecutiveMistakeCountForApplyDiff.get(relPath) || 0) + 1
-					this.consecutiveMistakeCountForApplyDiff.set(relPath, currentCount)
-					let formattedError = ""
-					if (diffResult.failParts && diffResult.failParts.length > 0) {
-						for (const failPart of diffResult.failParts) {
-							if (failPart.success) {
-								continue
-							}
-							const errorDetails = failPart.details
-								? JSON.stringify(failPart.details, null, 2)
-								: ""
-							formattedError = `<error_details>\n${
-								failPart.error
-							}${errorDetails ? `\n\nDetails:\n${errorDetails}` : ""}\n</error_details>`
-							partResults += formattedError
-						}
-					} else {
-						const errorDetails = diffResult.details
-							? JSON.stringify(diffResult.details, null, 2)
-							: ""
-						formattedError = `Unable to apply diff to file: ${absolutePath}\n\n<error_details>\n${
-							diffResult.error
-						}${errorDetails ? `\n\nDetails:\n${errorDetails}` : ""}\n</error_details>`
-					}
-
-					if (currentCount >= 2) {
-						await this.say("error", formattedError)
-					}
-					pushToolResult(formattedError)
-					return; // Replaced break
-				}
-
-				this.consecutiveMistakeCount = 0
-				this.consecutiveMistakeCountForApplyDiff.delete(relPath)
-				// Show diff view before asking for approval
-				this.diffViewProvider.editType = "modify"
-				await this.diffViewProvider.open(relPath)
-				await this.diffViewProvider.update(diffResult.content, true)
-				await this.diffViewProvider.scrollToFirstDiff()
-
-				const completeMessage = JSON.stringify({
-					...sharedMessageProps,
-					diff: diffContent,
-				} satisfies ClineSayTool)
-
-				let toolProgressStatus
-				if (this.diffStrategy && this.diffStrategy.getProgressStatus) {
-					toolProgressStatus = this.diffStrategy.getProgressStatus(block, diffResult)
-				}
-
-				const { approved } = await askApproval("tool", completeMessage, toolProgressStatus) // Use askApproval wrapper
-				if (!approved) {
-					await this.diffViewProvider.revertChanges() // This likely handles closing the diff view
-					pushToolResult(formatResponse.toolError("Apply diff operation cancelled by user.")) // Push result before returning
-					return; // Replaced break
-				}
-
-				const { newProblemsMessage, userEdits, finalContent } =
-					await this.diffViewProvider.saveChanges()
-				this.didEditFile = true // used to determine if we should wait for busy terminal to update before sending api request
-				let partFailHint = ""
-				if (diffResult.failParts && diffResult.failParts.length > 0) {
-					partFailHint = `But unable to apply all diff parts to file: ${absolutePath}, silently use <read_file> tool to check newest file version and re-apply diffs\n`
-				}
-				if (userEdits) {
-					// Need to re-check file existence as it might have been deleted during user edits
-					const fileStillExists = await fileExistsAtPath(absolutePath)
-					await this.say(
-						"user_feedback_diff",
-						JSON.stringify({
-							tool: fileStillExists ? "editedExistingFile" : "newFileCreated", // Use updated fileExists status
-							path: getReadablePath(cwd, relPath),
-							diff: userEdits,
-						} satisfies ClineSayTool),
-					);
-					pushToolResult(
-						`The user made the following updates to your content:\n\n${userEdits}\n\n` +
-							partFailHint +
-							`The updated content, which includes both your original modifications and the user's edits, has been successfully saved to ${relPath.toPosix()}. Here is the full, updated content of the file, including line numbers:\n\n` +
-							`<final_file_content path="${relPath.toPosix()}">\n${addLineNumbers(
-								finalContent || "",
-							)}\n</final_file_content>\n\n` +
-							`Please note:\n` +
-							`1. You do not need to re-write the file with these changes, as they have already been applied.\n` +
-							`2. Proceed with the task using this updated file content as the new baseline.\n` +
-							`3. If the user's edits have addressed part of the task or changed the requirements, adjust your approach accordingly.` +
-							`${newProblemsMessage}`,
-					);
-				} else {
-					pushToolResult(
-						`Changes successfully applied to ${relPath.toPosix()}:\n\n${newProblemsMessage}\n` +
-							partFailHint,
-					);
-				}
-				await this.diffViewProvider.reset()
-				return; // Replaced break
-			}
-		} catch (error) {
-			await handleError("applying diff", error)
-			await this.diffViewProvider.reset()
-			return; // Replaced break
-// Removed duplicate _executeInsertContentTool method definition (and incorrect closing brace)
-	} // End of _executeApplyDiffTool method
-// Removed comment that might be causing parsing issue
-// Removed _executeReadFileTool method definition
 } // End of Cline class
 
 function escapeRegExp(string: string): string {

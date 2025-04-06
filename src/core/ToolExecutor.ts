@@ -39,6 +39,169 @@ export class ToolExecutor {
     private diffViewProvider: DiffViewProvider;
     private rooIgnoreController: RooIgnoreController | undefined;
     private diffStrategy: DiffStrategy | undefined;
+
+    private async _executeInsertContent(
+        block: ToolUse,
+        cwd: string,
+        say: SayFunction,
+        ask: AskFunction,
+        pushToolResult: PushToolResultFunction,
+        handleError: HandleErrorFunction,
+        removeClosingTag: RemoveClosingTagFunction
+    ): Promise<void> {
+        const relPath: string | undefined = block.params.path
+        const operations: string | undefined = block.params.operations
+
+        const sharedMessageProps: ClineSayTool = {
+            tool: "appliedDiff",
+            path: getReadablePath(cwd, removeClosingTag("path", relPath)),
+        }
+
+        try {
+            if (block.partial) {
+                const partialMessage = JSON.stringify(sharedMessageProps)
+                await ask("tool", partialMessage, block.partial).catch(() => {})
+                return
+            }
+
+            // Validate required parameters
+            if (!relPath) {
+                pushToolResult(await this.sayAndCreateMissingParamError("insert_content", "path", say))
+                return
+            }
+
+            if (!operations) {
+                pushToolResult(await this.sayAndCreateMissingParamError("insert_content", "operations", say))
+                return
+            }
+
+            const absolutePath = path.resolve(cwd, relPath)
+            const fileExists = await fileExistsAtPath(absolutePath)
+
+            if (!fileExists) {
+                const formattedError = `File does not exist at path: ${absolutePath}\n\n<error_details>\nThe specified file could not be found. Please verify the file path and try again.\n</error_details>`
+                await say("error", formattedError)
+                pushToolResult(formattedError)
+                return
+            }
+
+            let parsedOperations: Array<{
+                start_line: number
+                content: string
+            }>
+
+            try {
+                parsedOperations = JSON.parse(operations)
+                if (!Array.isArray(parsedOperations)) {
+                    throw new Error("Operations must be an array")
+                }
+            } catch (error) {
+                await say("error", `Failed to parse operations JSON: ${error.message}`)
+                pushToolResult(formatResponse.toolError("Invalid operations JSON format"))
+                return
+            }
+
+            // Read the file
+            const fileContent = await fs.readFile(absolutePath, "utf8")
+            this.diffViewProvider.editType = "modify"
+            this.diffViewProvider.originalContent = fileContent
+            const lines = fileContent.split("\n")
+
+            const updatedContent = insertGroups(
+                lines,
+                parsedOperations.map((elem) => {
+                    return {
+                        index: elem.start_line - 1,
+                        elements: elem.content.split("\n"),
+                    }
+                }),
+            ).join("\n")
+
+            // Show changes in diff view
+            if (!this.diffViewProvider.isEditing) {
+                await ask("tool", JSON.stringify(sharedMessageProps), true).catch(() => {})
+                // First open with original content
+                await this.diffViewProvider.open(relPath)
+                await this.diffViewProvider.update(fileContent, false)
+                this.diffViewProvider.scrollToFirstDiff()
+                await delay(200)
+            }
+
+            const diff = formatResponse.createPrettyPatch(relPath, fileContent, updatedContent)
+
+            if (!diff) {
+                pushToolResult(`No changes needed for '${relPath}'`)
+                await this.diffViewProvider.reset() // Reset diff view even if no changes
+                return
+            }
+
+            await this.diffViewProvider.update(updatedContent, true)
+
+            const completeMessage = JSON.stringify({
+                ...sharedMessageProps,
+                diff,
+            } satisfies ClineSayTool)
+
+            // Re-using askApproval logic from apply_diff helper
+            const askResult = await ask("tool", completeMessage, false)
+            const approved = askResult.response === "yesButtonClicked";
+            const { text: feedbackText, images: feedbackImages } = askResult;
+
+            if (!approved) {
+                await this.diffViewProvider.revertChanges()
+                if (feedbackText) {
+                    await say("user_feedback", feedbackText, feedbackImages)
+                    pushToolResult(formatResponse.toolResult(formatResponse.toolDeniedWithFeedback(feedbackText), feedbackImages))
+                } else {
+                    pushToolResult(formatResponse.toolDenied())
+                }
+                return
+            }
+
+            // Handle approval with feedback
+            if (feedbackText) {
+                await say("user_feedback", feedbackText, feedbackImages)
+                pushToolResult(formatResponse.toolResult(formatResponse.toolApprovedWithFeedback(feedbackText), feedbackImages))
+            }
+
+            const { newProblemsMessage, userEdits, finalContent } =
+                await this.diffViewProvider.saveChanges()
+
+            if (!userEdits) {
+                pushToolResult(
+                    `The content was successfully inserted in ${relPath.toPosix()}.${newProblemsMessage}`,
+                )
+            } else {
+                const userFeedbackDiff = JSON.stringify({
+                    tool: "appliedDiff", // Keep consistent UI message
+                    path: getReadablePath(cwd, relPath),
+                    diff: userEdits,
+                } satisfies ClineSayTool)
+
+                await say("user_feedback_diff", userFeedbackDiff)
+                pushToolResult(
+                    `The user made the following updates to your content:\n\n${userEdits}\n\n` +
+                        `The updated content, which includes both your original modifications and the user's edits, has been successfully saved to ${relPath.toPosix()}. Here is the full, updated content of the file:\n\n` +
+                        `<final_file_content path="${relPath.toPosix()}">\n${addLineNumbers(finalContent || "")}\n</final_file_content>\n\n` +
+                        `Please note:\n` +
+                        `1. You do not need to re-write the file with these changes, as they have already been applied.\n` +
+                        `2. Proceed with the task using this updated file content as the new baseline.\n` +
+                        `3. If the user's edits have addressed part of the task or changed the requirements, adjust your approach accordingly.` +
+                        `${newProblemsMessage}`,
+                )
+            }
+            await this.diffViewProvider.reset()
+        } catch (error) {
+            handleError("insert content", error)
+            await this.diffViewProvider.reset()
+        }
+    }
+
+    private async sayAndCreateMissingParamError(toolName: string, paramName: string, say: SayFunction): Promise<string> {
+        const message = `Missing required parameter: ${paramName}`
+        await say("error", message)
+        return formatResponse.toolError(message)
+    }
     private browserSession: BrowserSession;
     private mcpHub: McpHub;
     private providerRef: WeakRef<ClineProvider>;
@@ -104,6 +267,9 @@ export class ToolExecutor {
                     break;
                 case "apply_diff":
                     await this._executeApplyDiff(block, pushToolResult, handleError, removeClosingTag, askApproval, sayAndCreateMissingParamError);
+                    break;
+                case "insert_content":
+                    await this._executeInsertContent(block, this.cwd, this.say, this.ask, pushToolResult, handleError, removeClosingTag);
                     break;
                 case "insert_content":
                      // TODO: Move logic here, calling _executeInsertContent
