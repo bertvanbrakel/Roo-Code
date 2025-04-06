@@ -269,6 +269,53 @@
 						}
 					},
 					"description": "Settings for VSCode Language Model API"
+				},
+				"roo.nats.enabled": {
+					"type": "boolean",
+					"default": false,
+					"description": "Enable NATS integration for remote monitoring and control."
+				},
+				"roo.nats.serverUrl": {
+					"type": "string",
+					"default": "nats://localhost:4222",
+					"description": "URL of the NATS server to connect to."
+				},
+				"roo.nats.credentialsFile": {
+					"type": "string",
+					"default": "",
+					"description": "Path to the NATS credentials file (.creds) for authentication. Leave empty to use environment variables (NATS_JWT/NATS_NKEY) or anonymous connection."
+				},
+				"roo.nats.instanceIdPrefix": {
+					"type": "string",
+					"default": "",
+					"description": "Optional prefix to add to the automatically generated persistent instance ID used in NATS subjects."
+				},
+				"roo.nats.initialCommandTimeoutMs": {
+					"type": "number",
+					"default": 5000,
+					"description": "Timeout in milliseconds to wait for an initial command via NATS on startup (e.g., initialize_roo)."
+				},
+				"roo.nats.authToken": {
+					"type": "string",
+					"default": "",
+					"description": "NATS authentication token. Used if credentialsFile is empty and takes priority over user/pass. Overridden by NATS_TOKEN environment variable."
+				},
+				"roo.nats.authUser": {
+					"type": "string",
+					"default": "",
+					"description": "NATS username for user/pass authentication. Used if credentialsFile and authToken are empty. Overridden by NATS_USER environment variable."
+				},
+				"roo.nats.authPassword": {
+					"type": "string",
+					"default": "",
+					"description": "NATS password for user/pass authentication. Used if credentialsFile and authToken are empty. Overridden by NATS_PW environment variable.",
+					"markdownDescription": "NATS password for user/pass authentication. Used if `credentialsFile` and `authToken` are empty. Overridden by `NATS_PW` environment variable. **Warning:** Storing passwords in settings is generally discouraged.",
+					"scope": "machine-overridable"
+				},
+				"roo.nats.autoStartLocalServer": {
+					"type": "boolean",
+					"default": false,
+					"description": "EXPERIMENTAL: Attempt to start a NATS server in a Docker container if connecting to localhost and no server is detected. Requires Docker to be installed and running."
 				}
 			}
 		}
@@ -340,6 +387,7 @@
 		"js-tiktoken": "^1.0.19",
 		"mammoth": "^1.8.0",
 		"monaco-vscode-textmate-theme-converter": "^0.1.7",
+		"nats": "^2.29.3",
 		"openai": "^4.78.1",
 		"os-name": "^6.0.0",
 		"p-wait-for": "^5.0.2",
@@ -357,6 +405,7 @@
 		"tmp": "^0.2.3",
 		"tree-sitter-wasms": "^0.1.11",
 		"turndown": "^7.2.0",
+		"uuid": "^11.1.0",
 		"web-tree-sitter": "^0.22.6",
 		"zod": "^3.23.8"
 	},
@@ -367,10 +416,12 @@
 		"@types/debug": "^4.1.12",
 		"@types/diff": "^5.2.1",
 		"@types/diff-match-patch": "^1.0.36",
+		"@types/fs-extra": "^11.0.4",
 		"@types/glob": "^8.1.0",
 		"@types/jest": "^29.5.14",
 		"@types/node": "20.x",
 		"@types/string-similarity": "^4.0.2",
+		"@types/uuid": "^10.0.0",
 		"@typescript-eslint/eslint-plugin": "^7.14.1",
 		"@typescript-eslint/parser": "^7.11.0",
 		"esbuild": "^0.24.0",

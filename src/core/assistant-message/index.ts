@@ -25,6 +25,7 @@ export const toolUseNames = [
 	"attempt_completion",
 	"switch_mode",
 	"new_task",
+	"fetch_instructions",
 ] as const
 
 // Converts array of tool call names into a union type ("execute_command" | "read_file" | ...)
@@ -57,6 +58,7 @@ export const toolParamNames = [
 	"mode",
 	"message",
 	"cwd",
+	"task", // Added for fetch_instructions
 ] as const
 
 export type ToolParamName = (typeof toolParamNames)[number]

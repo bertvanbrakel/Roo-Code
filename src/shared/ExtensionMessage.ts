@@ -54,6 +54,8 @@ export interface ExtensionMessage {
 		| "browserToolEnabled"
 		| "browserConnectionResult"
 		| "remoteBrowserEnabled"
+		| "remoteSetUiComponentLocked"   // Renamed for remote actions
+		| "remoteSetUiComponentUnlocked" // Renamed for remote actions
 	text?: string
 	action?:
 		| "chatButtonClicked"
@@ -88,6 +90,7 @@ export interface ExtensionMessage {
 	slug?: string
 	success?: boolean
 	values?: Record<string, any>
+	remoteUiLockPayload?: RemoteUiLockPayload // Renamed for remote actions
 }
 
 export interface ApiConfigMeta {
@@ -235,4 +238,14 @@ export type ClineApiReqCancelReason = "streaming_failed" | "user_cancelled"
 export type ToolProgressStatus = {
 	icon?: string
 	text?: string
+}
+
+// Renamed for remote actions
+export interface RemoteUiLockPayload {
+	componentId: // Identifier for the UI component to lock/unlock
+		| "chatInput"
+		| "modeSelector"
+		| "configSaveButton"
+		| "allControls"; // Or other specific component IDs as needed
+	message?: string; // Optional message to display while locked
 }
