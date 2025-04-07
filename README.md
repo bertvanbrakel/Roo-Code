@@ -137,6 +137,8 @@ npm run dev
 
 Changes to the webview will appear immediately. Changes to the core extension will require a restart of the extension host.
 
+- See [learnings.md](learnings.md) for debugging tips and common issues encountered during development.
+
 Alternatively you can build a .vsix and install it directly in VSCode:
 
 ```sh

@@ -68,6 +68,29 @@ const vscode = {
 			this.id = id
 		}
 	},
+	TabInputCustom: class { // Add mock for TabInputCustom
+		constructor(uri, viewType) {
+			this.uri = uri
+			this.viewType = viewType
+		}
+	},
+	TabInputNotebook: class { // Add mock for TabInputNotebook
+		constructor(uri, notebookType) {
+			this.uri = uri;
+			this.notebookType = notebookType;
+		}
+	},
+	TabInputNotebookDiff: class { // Add mock for TabInputNotebookDiff
+		constructor(original, modified, notebookType) {
+			this.original = original; // Mock URI object
+			this.modified = modified; // Mock URI object
+			this.notebookType = notebookType;
+		}
+	},
+	TabInputTerminal: class { // Add mock for TabInputTerminal
+		// Terminals don't have specific properties like uri in the same way
+		// Add a dummy property to help differentiate if needed, or rely on falling through other checks
+	},
 	ExtensionMode: {
 		Production: 1,
 		Development: 2,

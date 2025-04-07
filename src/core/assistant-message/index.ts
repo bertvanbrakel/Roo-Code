@@ -65,9 +65,11 @@ export type ToolParamName = (typeof toolParamNames)[number]
 
 export interface ToolUse {
 	type: "tool_use"
+	id?: string // Add optional id from Anthropic stream
 	name: ToolUseName
 	// params is a partial record, allowing only some or none of the possible parameters to be used
 	params: Partial<Record<ToolParamName, string>>
+	input?: any // Add optional input from Anthropic stream
 	partial: boolean
 }
 
